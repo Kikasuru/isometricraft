@@ -73,8 +73,8 @@ function tic(){
 
 //render - Renders the game (Active)
 function render(ctx){
-    //Make a White background
-    ctx.fillStyle = "white";
+    //Make a Black background
+    ctx.fillStyle = "black";
     ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
 
     //X: 20 Y: 12 Z: 24
