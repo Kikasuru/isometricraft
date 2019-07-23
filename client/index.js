@@ -77,35 +77,35 @@ function render(ctx){
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
 
-    //X: 20 Y: 12 Z: 24
+    //X: 12 Y: 6 Z: 12
 
-    //Singular Block.
+    //1st Block
     ctx.drawImage(images.blocksheet,
         //Sprite Position & Size
-        43*14,0,42,49,
+        24*1,0,24,24,
         //Position & Canvas Size
-        camera[0]-Math.floor(42/2),camera[1]-Math.floor(49/2),42,49);
+        camera[0]-Math.floor(24/2),camera[1]-Math.floor(24/2),24,24);
 
-    //A Second Block.
+    //2nd Block
     ctx.drawImage(images.blocksheet,
         //Sprite Position & Size
-        43*14,0,42,49,
+        24*1,0,24,24,
         //Position & Canvas Size
-        camera[0]-Math.floor(42/2)+20,camera[1]-Math.floor(49/2)+12,42,49);
+        camera[0]-Math.floor(24/2)+12,camera[1]-Math.floor(24/2)+6,24,24);
 
-    //Another one.
+    //3rd Block
     ctx.drawImage(images.blocksheet,
         //Sprite Position & Size
-        43*14,0,42,49,
+        24*1,0,24,24,
         //Position & Canvas Size
-        camera[0]-Math.floor(42/2)-20,camera[1]-Math.floor(49/2)+12,42,49);
+        camera[0]-Math.floor(24/2)-12,camera[1]-Math.floor(24/2)+6,24,24);
 
-    //ANOTHER ONE.
+    //4th Block
     ctx.drawImage(images.blocksheet,
         //Sprite Position & Size
-        43*14,0,42,49,
+        24*1,0,24,24,
         //Position & Canvas Size
-        camera[0]-Math.floor(42/2),camera[1]-Math.floor(49/2)+24,42,49);
+        camera[0]-Math.floor(24/2),camera[1]-Math.floor(24/2)+12,24,24);
 }
 
 //newImage - Loads a new image into the queue (Call)
