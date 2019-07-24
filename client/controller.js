@@ -7,8 +7,8 @@ var mouse = {
 };
 
 document.onmousemove = function (event){
-    mouse.x = event.screenX;
-    mouse.y = event.screenY;
+    mouse.x = event.offsetX;
+    mouse.y = event.offsetY;
 }
 
 document.onmousedown = function (event){
