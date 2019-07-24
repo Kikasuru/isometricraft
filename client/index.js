@@ -32,17 +32,6 @@ function init(){
     }
 }
 
-//Mouse Camera Variable - Remembers the position of the mouse when rightclicked
-var mouseCamera = {
-    moving:false,
-    //Mouse X and Y
-    mx:0,
-    my:0,
-    //Camera X and Y
-    cx:0,
-    cy:0
-}
-
 //newImage - Loads a new image into the queue (Call)
 function newImage(name,src){
     //Define new Image

@@ -1,3 +1,14 @@
+//Mouse Camera Variable - Remembers the position of the mouse when rightclicked
+var mouseCamera = {
+    moving:false,
+    //Mouse X and Y
+    mx:0,
+    my:0,
+    //Camera X and Y
+    cx:0,
+    cy:0
+}
+
 //tic - Runs a game tic/frame (Active)
 function tic(){
     //console.log(mouseCamera,camera);
