@@ -28,86 +28,6 @@ var map = {
                 [1,1,1,1,1,1,1,1],
                 [1,1,1,1,1,1,1,1],
                 [1,1,1,1,1,1,1,1]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,3,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,3,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,3,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,3,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,8,8,8,8,8,0,0],
-                [0,8,8,3,8,8,0,0],
-                [0,8,8,8,8,8,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,8,8,8,8,8,0,0],
-                [0,8,8,8,8,8,0,0],
-                [0,8,8,8,8,8,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
-            ],
-            [
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,8,0,0,0,0],
-                [0,0,8,8,8,0,0,0],
-                [0,0,0,8,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0]
             ]
         ]
     }
@@ -119,12 +39,18 @@ function render(ctx){
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
 
-    //X: 12 Y: 6 Z: 12
+    //Draw Chunks
+    drawChunk(ctx,0,0,0);
+    drawChunk(ctx,0,1,0);
+    drawChunk(ctx,0,0,1);
+    drawChunk(ctx,0,1,1);
+}
 
+function drawChunk(ctx, num, positionx, positiony){
     //Draw each Layer
     //Element: Layer
     //Index: Z Position
-    map.chunk0.layers.forEach(function(el,il){
+    map["chunk"+num].layers.forEach(function(el,il){
         //For each X Axis
         //Element: Y Axis
         //Index: X Position
@@ -135,18 +61,33 @@ function render(ctx){
             ex.forEach(function(ey,iy){
                 //If block is not air
                 if(ey!==0){
+                    //X Position
+                    var x = camera[0]-Math.floor(24/2)+(iy*12)-(ix*12)+(positionx*96)-(positiony*96)
+                    //Y Position
+                    var y = camera[1]-Math.floor(24/2)+(iy*6)+(ix*6)-(il*12)+(positionx*48)+(positiony*48)
+                    //Block Brightness
+                    var hover = 0
+                    //Check if Mouse is hovering the block.
+                    if(mouse.x.between(x,x+24,true)&&
+                    mouse.y.between(y,y+12,true)){
+                        var hover = 24
+                    }
                     //Draw a Block
                     ctx.drawImage(images.blocksheet,
                         //Sprite Position & Size
-                        24*(ey),0,24,24,
-                        //X Position
-                        camera[0]-Math.floor(24/2)+(iy*12)-(ix*12),
-                        //Y Position
-                        camera[1]-Math.floor(24/2)+(iy*6)+(ix*6)-(il*12),
-                        //Size
-                        24,24);
+                        24*(ey),hover,24,24,
+                        //Position & Size
+                        x,y,24,24);
                 }
             });
         });
     });
+}
+
+//Inbetween function because I'm lazy. (Call)
+Number.prototype.between = function(a, b, inclusive) {
+  var min = Math.min(a, b),
+    max = Math.max(a, b);
+
+  return inclusive ? this >= min && this <= max : this > min && this < max;
 }
