@@ -104,11 +104,7 @@ function drawChunk(ctx, num, positionx, positiony){
                     //Block Brightness
                     var hover = 0;
                     //Check if Mouse is hovering the block.
-<<<<<<< HEAD
                     if(userinfo.hovering === blockPositions.length){
-=======
-                    if(hit(x,y,mouse.x,mouse.y)){
->>>>>>> b246dd4a8f0224f6891bcf8de784c84bfb70cb66
                         var hover = 24;
                     }
                     //Draw a Block
