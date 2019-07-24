@@ -82,6 +82,7 @@ function render(ctx){
 }
 
 function drawChunk(ctx, num, positionx, positiony){
+    blockPositions = [];
     //Draw each Layer
     //Element: Layer
     //Index: Z Position
