@@ -125,7 +125,7 @@ function drawChunk(ctx, num, positionx, positiony){
     var chunkPositions = [];
     //Draw each Layer
     //Element: Layer
-    //Index: Z Position
+    //Index: Layer Position
     map["chunk"+num].layers.forEach(function(el,il){
         //For each X Axis
         //Element: Y Axis
@@ -153,7 +153,13 @@ function drawChunk(ctx, num, positionx, positiony){
                         ctx.drawImage(images.selection,x,y,24,24);
                     }
                     //Put the block position in a variable for the Gametic to read.
-                    blockPositions.push([x,y]);
+                    blockPositions.push({x,y,blockInfo:{
+                        type:ey,
+                        chunk:num,
+                        x:ix,
+                        y:iy,
+                        layer:il
+                    }});
                 }
             });
         });
