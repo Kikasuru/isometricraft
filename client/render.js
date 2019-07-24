@@ -10,6 +10,16 @@ var map = {
     "chunk0":{
         "layers":[
             [
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4]
+            ],
+            [
                 [0,0,0,0,0,0,16,16],
                 [0,0,0,0,16,16,12,13],
                 [0,0,0,16,12,13,13,13],
@@ -23,6 +33,16 @@ var map = {
     },
     "chunk1":{
         "layers":[
+            [
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4]
+            ],
             [
                 [16,16,16,0,0,0,0,0],
                 [13,13,12,16,16,0,0,0],
@@ -38,6 +58,16 @@ var map = {
     "chunk2":{
         "layers":[
             [
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4]
+            ],
+            [
                 [16,13,13,13,13,13,12,12],
                 [16,12,13,13,12,13,13,13],
                 [0,16,12,13,16,13,13,13],
@@ -52,6 +82,16 @@ var map = {
     "chunk3":{
         "layers":[
             [
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4],
+                [4,4,4,4,4,4,4,4]
+            ],
+            [
                 [13,13,13,13,12,12,13,16],
                 [13,13,13,13,13,12,13,16],
                 [13,13,16,13,13,16,12,16],
@@ -65,7 +105,7 @@ var map = {
     }
 }
 
-var blockPositions = []
+var blockPositions = [];
 
 //render - Renders the game (Active)
 function render(ctx){
@@ -73,8 +113,8 @@ function render(ctx){
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     //Draw Chunks
-
     blockPositions = [];
+
     drawChunk(ctx,0,0,0);
     drawChunk(ctx,1,1,0);
     drawChunk(ctx,2,0,1);
@@ -82,6 +122,7 @@ function render(ctx){
 }
 
 function drawChunk(ctx, num, positionx, positiony){
+    var chunkPositions = [];
     //Draw each Layer
     //Element: Layer
     //Index: Z Position
@@ -93,6 +134,7 @@ function drawChunk(ctx, num, positionx, positiony){
             //For each Y Axis
             //Element: Block Number
             //Index: Y Position
+            var layerPositions = [];
             ex.forEach(function(ey,iy){
                 //If block is not air
                 if(ey!==0){

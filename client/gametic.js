@@ -70,7 +70,7 @@ function tic(){
     for(i=0;i<blockPositions.length;i++){
         if(hit(blockPositions[i][0],blockPositions[i][1],mouse.x,mouse.y)){
             userinfo.hovering = i;
-            break;
+            //break;
         }
     }
 }
