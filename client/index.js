@@ -1,6 +1,9 @@
 var userinfo = {
     hovering:false,
-    position:"top"
+    position:"top",
+    hotbar:[1,2,3,4,5,6,7,8],
+    hotbarSelection:0,
+    button:0
 };
 
 var images = {};
@@ -15,6 +18,12 @@ function init(){
         //Resize the Canvas
         resize();
 
+        //Enable Nearest Neighbor
+        canvas.imageSmoothingEnabled = false;
+        canvas.mozImageSmoothingEnabled = false;
+        canvas.webkitImageSmoothingEnabled = false;
+        canvas.msImageSmoothingEnabled = false;
+
         //Disable Rightclicks
         canvas.oncontextmenu = function(e) {
             return false;
@@ -26,6 +35,8 @@ function init(){
         //Define Images
         newImage("blocksheet","blocksheet.png"); //Block Tileset
         newImage("selection", "selection.png"); //Selection Overlay
+        newImage("buttons", "buttons.png"); //Action Buttons
+        newImage("hotbar", "hotbar.png"); //Block Hotbar
 
         //Render each frame.
         setInterval(function(){

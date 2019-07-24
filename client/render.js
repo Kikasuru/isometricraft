@@ -18,16 +18,6 @@ var map = {
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4]
-            ],
-            [
-                [0,0,0,0,0,0,16,16],
-                [0,0,0,0,16,16,12,13],
-                [0,0,0,16,12,13,13,13],
-                [0,0,16,12,13,13,13,13],
-                [0,0,16,13,13,13,13,13],
-                [0,16,13,13,13,13,13,13],
-                [16,12,13,13,13,13,13,13],
-                [16,13,13,13,13,13,13,13]
             ]
         ]
     },
@@ -42,16 +32,6 @@ var map = {
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4]
-            ],
-            [
-                [16,16,16,0,0,0,0,0],
-                [13,13,12,16,16,0,0,0],
-                [13,13,13,13,12,16,0,0],
-                [13,13,13,13,13,16,0,0],
-                [13,13,13,13,13,12,16,0],
-                [13,16,13,16,13,12,16,0],
-                [13,16,13,16,13,13,13,16],
-                [13,16,13,16,13,13,13,16]
             ]
         ]
     },
@@ -66,16 +46,6 @@ var map = {
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4]
-            ],
-            [
-                [16,13,13,13,13,13,12,12],
-                [16,12,13,13,12,13,13,13],
-                [0,16,12,13,16,13,13,13],
-                [0,0,16,16,12,13,13,13],
-                [0,0,0,16,16,12,12,13],
-                [0,0,16,12,12,16,16,16],
-                [0,16,12,12,12,12,12,16],
-                [0,0,16,16,16,16,16,0],
             ]
         ]
     },
@@ -90,16 +60,6 @@ var map = {
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4],
                 [4,4,4,4,4,4,4,4]
-            ],
-            [
-                [13,13,13,13,12,12,13,16],
-                [13,13,13,13,13,12,13,16],
-                [13,13,16,13,13,16,12,16],
-                [13,13,13,13,12,16,16,0],
-                [13,13,13,12,16,16,0,0],
-                [16,16,16,16,12,12,16,0],
-                [16,16,16,12,12,12,12,16],
-                [0,0,16,16,16,16,16,16],
             ]
         ]
     }
@@ -119,6 +79,32 @@ function render(ctx){
     drawChunk(ctx,1,1,0);
     drawChunk(ctx,2,0,1);
     drawChunk(ctx,3,1,1);
+
+    //Hotbar
+    ctx.drawImage(images.hotbar,
+        Math.floor(window.innerWidth/2)-114,window.innerHeight-32
+    );
+    //Buttons
+    //Break Button
+    ctx.drawImage(images.buttons,
+        //Sprite Position & Size
+        0,userinfo.button === 0 ?16:0,16,16,
+        //Position & Size
+        Math.floor(window.innerWidth/2)-110,window.innerHeight-48,16,16);
+
+    //Build Button
+    ctx.drawImage(images.buttons,
+        //Sprite Position & Size
+        16,userinfo.button === 1 ?16:0,16,16,
+        //Position & Size
+        Math.floor(window.innerWidth/2)-94,window.innerHeight-48,16,16);
+
+    //Hand Button
+    ctx.drawImage(images.buttons,
+        //Sprite Position & Size
+        32,userinfo.button === 2 ?16:0,16,16,
+        //Position & Size
+        Math.floor(window.innerWidth/2)-78,window.innerHeight-48,16,16);
 }
 
 function drawChunk(ctx, num, positionx, positiony){
@@ -139,17 +125,17 @@ function drawChunk(ctx, num, positionx, positiony){
                 //If block is not air
                 if(ey!==0){
                     //X Position
-                    var x = camera[0]-Math.floor(24/2)+(iy*12)-(ix*12)+(positionx*96)-(positiony*96);
+                    var x = camera[0]-12+(iy*12)-(ix*12)+(positionx*96)-(positiony*96);
                     //Y Position
-                    var y = camera[1]-Math.floor(24/2)+(iy*6)+(ix*6)-(il*12)+(positionx*48)+(positiony*48);
+                    var y = camera[1]-12+(iy*6)+(ix*6)-(il*12)+(positionx*48)+(positiony*48);
                     //Draw a Block
                     ctx.drawImage(images.blocksheet,
                         //Sprite Position & Size
                         24*(ey),0,24,24,
                         //Position & Size
                         x,y,24,24);
-                    //Check if Mouse is hovering the block.
-                    if(userinfo.hovering === blockPositions.length){
+                    //Check if Mouse is hovering the block and if Hand Mode is off.
+                    if(userinfo.hovering === blockPositions.length && userinfo.button !== 2){
                         ctx.drawImage(images.selection,x,y,24,24);
                     }
                     //Put the block position in a variable for the Gametic to read.

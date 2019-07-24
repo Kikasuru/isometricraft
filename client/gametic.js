@@ -61,8 +61,8 @@ function tic(){
     //console.log(mouseCamera,camera);
 
     //---Camera---
-    //Checks if the right button is pressed
-    if(mouse.right === true){
+    //Checks if the right button is pressed or if the current mode is Hand Mode.
+    if(mouse.right === true || (userinfo.button === 2 && mouse.left === true)){
         //If it wasn't already moving, initialize the move.
         if(mouseCamera.moving === false){
             mouseCamera.moving = true;
@@ -87,11 +87,28 @@ function tic(){
     //Find what block the user is hovering
     userinfo.hovering = false
     for(i=0;i<blockPositions.length;i++){
+        //
         var hovering = hit(blockPositions[i].x,blockPositions[i].y,mouse.x,mouse.y)
+        //If hovering is true, log it.
         if(hovering){
             userinfo.position = hovering;
             userinfo.hovering = i;
             //break;
+        }
+    }
+
+
+    //---Buttons---
+    //Check each button.
+    for(i=0;i<3;i++){
+        var buttonx = Math.floor(window.innerWidth/2)-(110-(i*16))
+        var buttony = window.innerHeight-48
+        //Checks if the left button is pressed and the cursor is on the button.
+        if(mouse.left === true &&
+        mouse.x.between(buttonx,buttonx+16)&&
+        mouse.y.between(buttony,buttony+16)){
+            //Switch to that button.
+            userinfo.button = i;
         }
     }
 }
