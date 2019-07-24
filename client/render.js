@@ -142,19 +142,16 @@ function drawChunk(ctx, num, positionx, positiony){
                     var x = camera[0]-Math.floor(24/2)+(iy*12)-(ix*12)+(positionx*96)-(positiony*96);
                     //Y Position
                     var y = camera[1]-Math.floor(24/2)+(iy*6)+(ix*6)-(il*12)+(positionx*48)+(positiony*48);
-                    //Block Brightness
-                    var hover = 0;
-                    //Check if Mouse is hovering the block.
-                    if(userinfo.hovering === blockPositions.length){
-                        var hover = 24;
-                    }
                     //Draw a Block
                     ctx.drawImage(images.blocksheet,
                         //Sprite Position & Size
-                        24*(ey),hover,24,24,
+                        24*(ey),0,24,24,
                         //Position & Size
                         x,y,24,24);
-
+                    //Check if Mouse is hovering the block.
+                    if(userinfo.hovering === blockPositions.length){
+                        ctx.drawImage(images.selection,x,y,24,24);
+                    }
                     //Put the block position in a variable for the Gametic to read.
                     blockPositions.push([x,y]);
                 }

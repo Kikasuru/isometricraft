@@ -87,9 +87,14 @@ function tic(){
     //Find what block the user is hovering
     userinfo.hovering = false
     for(i=0;i<blockPositions.length;i++){
-        if(hit(blockPositions[i][0],blockPositions[i][1],mouse.x,mouse.y)){
+        var hovering = hit(blockPositions[i][0],blockPositions[i][1],mouse.x,mouse.y)
+        if(hovering){
+            userinfo.position = hovering;
             userinfo.hovering = i;
             //break;
         }
+    }
+    if(mouse.left === true){
+        console.log(userinfo.position);
     }
 }

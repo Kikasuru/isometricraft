@@ -1,5 +1,6 @@
 var userinfo = {
-    hovering:false
+    hovering:false,
+    position:"top"
 };
 
 var images = {};
@@ -22,8 +23,9 @@ function init(){
         //Get Context
         var ctx = canvas.getContext("2d");
 
-        //Define Block Image
-        newImage("blocksheet","blocksheet.png");
+        //Define Images
+        newImage("blocksheet","blocksheet.png"); //Block Tileset
+        newImage("selection", "selection.png"); //Selection Overlay
 
         //Render each frame.
         setInterval(function(){
