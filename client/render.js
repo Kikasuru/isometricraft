@@ -65,13 +65,16 @@ var map = {
     }
 }
 
+var blockPositions = []
+
 //render - Renders the game (Active)
 function render(ctx){
     //Make a Black background
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
-
     //Draw Chunks
+
+    blockPositions = [];
     drawChunk(ctx,0,0,0);
     drawChunk(ctx,1,1,0);
     drawChunk(ctx,2,0,1);
@@ -94,15 +97,14 @@ function drawChunk(ctx, num, positionx, positiony){
                 //If block is not air
                 if(ey!==0){
                     //X Position
-                    var x = camera[0]-Math.floor(24/2)+(iy*12)-(ix*12)+(positionx*96)-(positiony*96)
+                    var x = camera[0]-Math.floor(24/2)+(iy*12)-(ix*12)+(positionx*96)-(positiony*96);
                     //Y Position
-                    var y = camera[1]-Math.floor(24/2)+(iy*6)+(ix*6)-(il*12)+(positionx*48)+(positiony*48)
+                    var y = camera[1]-Math.floor(24/2)+(iy*6)+(ix*6)-(il*12)+(positionx*48)+(positiony*48);
                     //Block Brightness
-                    var hover = 0
+                    var hover = 0;
                     //Check if Mouse is hovering the block.
-                    if(mouse.x.between(x,x+24,true)&&
-                    mouse.y.between(y,y+12,true)){
-                        var hover = 24
+                    if(userinfo.hovering === blockPositions.length){
+                        var hover = 24;
                     }
                     //Draw a Block
                     ctx.drawImage(images.blocksheet,
@@ -110,6 +112,9 @@ function drawChunk(ctx, num, positionx, positiony){
                         24*(ey),hover,24,24,
                         //Position & Size
                         x,y,24,24);
+
+                    //Put the block position in a variable for the Gametic to read.
+                    blockPositions.push([x,y]);
                 }
             });
         });

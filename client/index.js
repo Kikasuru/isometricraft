@@ -1,3 +1,7 @@
+var userinfo = {
+    hovering:false
+};
+
 var images = {};
 var camera = [Math.floor(window.innerWidth/2),Math.floor(window.innerHeight/2)];
 
