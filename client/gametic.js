@@ -56,6 +56,7 @@ function hit (blockx,blocky,hitx,hity){
     return output;
 }
 
+var mouseLeftPressed = false;
 //tic - Runs a game tic/frame (Active)
 function tic(){
     //console.log(mouseCamera,camera);
@@ -97,6 +98,10 @@ function tic(){
         }
     }
 
+    //--Building--
+    if(mouse.left === true && userinfo.button === 1){
+
+    }
 
     //---Buttons---
     //Check each button.
@@ -109,6 +114,20 @@ function tic(){
         mouse.y.between(buttony,buttony+16)){
             //Switch to that button.
             userinfo.button = i;
+        }
+    }
+    //Check each block.
+    for(i=0;i<8;i++){
+        var buttonx = Math.floor(window.innerWidth/2)-110+(i*28)
+        var buttony = window.innerHeight-28
+        //Checks if the left button is pressed and the cursor is on the button.
+        if(mouse.left === true &&
+        mouse.x.between(buttonx,buttonx+24)&&
+        mouse.y.between(buttony,buttony+24)&&
+        //Check if Build Mode is on.
+        userinfo.button === 1){
+            //Switch to that button.
+            userinfo.hotbarSelection = i;
         }
     }
 }

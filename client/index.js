@@ -3,7 +3,8 @@ var userinfo = {
     position:"top",
     hotbar:[1,2,3,4,5,6,7,8],
     hotbarSelection:0,
-    button:0
+    button:0,
+    reverse:false
 };
 
 var images = {};

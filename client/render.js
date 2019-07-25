@@ -84,6 +84,19 @@ function render(ctx){
     ctx.drawImage(images.hotbar,
         Math.floor(window.innerWidth/2)-114,window.innerHeight-32
     );
+    //Hotbar Blocks
+    userinfo.hotbar.forEach(function(e,i){
+        ctx.drawImage(images.blocksheet,
+            //Sprite Position & Size
+            24*(e),0,24,24,
+            //Position & Size
+            Math.floor(window.innerWidth/2)-110+(i*28),window.innerHeight-28,24,24);
+        if(userinfo.hotbarSelection === i&&
+        //Check if Build Mode is on.
+        userinfo.button === 1){
+            ctx.drawImage(images.selection,Math.floor(window.innerWidth/2)-110+(i*28),window.innerHeight-28,24,24);
+        }
+    });
     //Buttons
     //Break Button
     ctx.drawImage(images.buttons,
