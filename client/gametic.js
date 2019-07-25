@@ -99,9 +99,41 @@ function tic(){
     }
 
     //--Building--
+    //Check if the mouse is clicked and if Build Mode is on.
     if(mouse.left === true && userinfo.button === 1){
+        //If the mouse wasn't already clicked, place a block.
+        if(mouseLeftPressed === false){
+            mouseLeftPressed = true;
+            //Check if a block is being hovered.
+            if(userinfo.hovering !== false){
+                var block = blockPositions[userinfo.hovering];
+                //console.log(block);
+                switch(userinfo.position){
+                    case "top":
+                        //If there's no layer above the block, create one.
+                        if(typeof map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer+1] === "undefined"){
+                            map["chunk"+block.blockInfo.chunk].layers.push([
+                                [0,0,0,0,0,0,0,0],
+                                [0,0,0,0,0,0,0,0],
+                                [0,0,0,0,0,0,0,0],
+                                [0,0,0,0,0,0,0,0],
+                                [0,0,0,0,0,0,0,0],
+                                [0,0,0,0,0,0,0,0],
+                                [0,0,0,0,0,0,0,0],
+                                [0,0,0,0,0,0,0,0]
+                            ]);
+                        }
+                        //Add the block to the layer above the block.
+                        console.log("chunk"+block.blockInfo.chunk)
+                        map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer+1][block.blockInfo.x][block.blockInfo.y] = userinfo.hotbar[userinfo.hotbarSelection]
+                        break;
+                    case "right":
 
-    }
+                        break;
+                }
+            }
+        }
+    } else if(mouseLeftPressed === true) mouseLeftPressed = false;
 
     //---Buttons---
     //Check each button.

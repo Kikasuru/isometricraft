@@ -7,6 +7,10 @@
 */
 
 var map = {
+    "chunkMatrix":[
+        [0,1],
+        [2,3]
+    ],
     "chunk0":{
         "layers":[
             [
