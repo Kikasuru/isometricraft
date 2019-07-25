@@ -1,4 +1,5 @@
-# socketcraft
-A 2D Isometric Minecraft Clone for HTML5
+# SocketCraft
+**Currently in Development.**
+
 
 ![tree](https://i.imgur.com/NQw7Yjb.png)
