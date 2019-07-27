@@ -135,7 +135,18 @@ function tic(){
                             map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer+1][block.blockInfo.x][block.blockInfo.y] = userinfo.hotbar[userinfo.hotbarSelection]
                             break;
                         case "right":
-
+                            //If the block to the right is not at the edge of the chunk and if there's not a block in that spot.
+                            if(block.blockInfo.y+1 !== 8 && map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x][block.blockInfo.y+1] === 0){
+                                //Place the block.
+                                map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x][block.blockInfo.y+1] = userinfo.hotbar[userinfo.hotbarSelection]
+                            }
+                            break;
+                        case "left":
+                            //If the block to the left is not at the edge of the chunk and if there's not a block in that spot.
+                            if(block.blockInfo.x+1 !== 8 && map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x+1][block.blockInfo.y] === 0){
+                                //Place the block.
+                                map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x+1][block.blockInfo.y] = userinfo.hotbar[userinfo.hotbarSelection]
+                            }
                             break;
                     }
                 }
