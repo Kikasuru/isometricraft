@@ -148,7 +148,10 @@ function tic(){
                 //Check if a block is being hovered.
                 if(userinfo.hovering !== false){
                     var block = blockPositions[userinfo.hovering];
-                    map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x][block.blockInfo.y] = 0;
+                    //Check if the layer is not the baseplate.
+                    if(block.blockInfo.layer !== 0){
+                        map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x][block.blockInfo.y] = 0;
+                    }
                 }
             }
         }
