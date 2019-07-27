@@ -57,6 +57,7 @@ function hit (blockx,blocky,hitx,hity){
 }
 
 var mouseLeftPressed = false;
+var mlFrames = 0;
 //tic - Runs a game tic/frame (Active)
 function tic(){
     //console.log(mouseCamera,camera);
@@ -100,6 +101,12 @@ function tic(){
 
     //Check if the mouse is clicked.
     if(mouse.left === true){
+        //If MLFrames is 8, reset.
+        if (mlFrames === 8){
+            mouseLeftPressed = false;
+            mlFrames = 0;
+        }
+
         //--Building--
         if(userinfo.button === 1){
             //If the mouse wasn't already clicked, place a block.
@@ -125,7 +132,6 @@ function tic(){
                                 ]);
                             }
                             //Add the block to the layer above the block.
-                            console.log("chunk"+block.blockInfo.chunk)
                             map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer+1][block.blockInfo.x][block.blockInfo.y] = userinfo.hotbar[userinfo.hotbarSelection]
                             break;
                         case "right":
@@ -146,7 +152,11 @@ function tic(){
                 }
             }
         }
-    } else if(mouseLeftPressed === true) mouseLeftPressed = false;
+        mlFrames++;
+    } else if(mouseLeftPressed === true) {
+        mouseLeftPressed = false;
+        mlFrames = 0;
+    }
 
     //---Buttons---
     //Check each button.
@@ -156,7 +166,9 @@ function tic(){
         //Checks if the left button is pressed and the cursor is on the button.
         if(mouse.left === true &&
         mouse.x.between(buttonx,buttonx+16)&&
-        mouse.y.between(buttony,buttony+16)){
+        mouse.y.between(buttony,buttony+16)||
+        //Or if the number key was pressed.
+        keyboard.numberKeys[i+1]){
             //Switch to that button.
             userinfo.button = i;
         }

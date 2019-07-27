@@ -6,6 +6,23 @@ var mouse = {
     right:false
 };
 
+var keyboard = {
+    numberKeys:[
+        //0-2
+        false,
+        false,
+        false,
+        //3-6
+        false,
+        false,
+        false,
+        //7-9
+        false,
+        false,
+        false
+    ]
+}
+
 document.onmousemove = function (event){
     mouse.x = event.offsetX;
     mouse.y = event.offsetY;
@@ -30,5 +47,19 @@ document.onmouseup = function (event){
         case 2:
             mouse.right = false
             break
+    }
+}
+
+document.onkeydown = function (event){
+    //Number Keys
+    if(event.which.between(48,57)){
+        keyboard.numberKeys[event.which-48] = true;
+    }
+}
+
+document.onkeyup = function (event){
+    //Number Keys
+    if(event.which.between(48,57)){
+        keyboard.numberKeys[event.which-48] = false;
     }
 }
