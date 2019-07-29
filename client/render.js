@@ -97,10 +97,6 @@ function render(ctx){
             }
         });
     });
-    /*drawChunk(ctx,0,0,0);
-    drawChunk(ctx,1,0,1);
-    drawChunk(ctx,2,1,0);
-    drawChunk(ctx,3,1,1);*/
 
     //Hotbar
     ctx.drawImage(images.hotbar,
