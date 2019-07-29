@@ -172,7 +172,7 @@ function tic(){
         mlFrames = 0;
     }
 
-    //---Buttons---
+    /*//---Buttons---
     //Check each button.
     for(i=0;i<3;i++){
         var buttonx = Math.floor(window.innerWidth/2)-(110-(i*16))
@@ -200,5 +200,5 @@ function tic(){
             //Switch to that button.
             userinfo.hotbarSelection = i;
         }
-    }
+    }*/
 }

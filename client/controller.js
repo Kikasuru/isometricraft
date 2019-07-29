@@ -23,12 +23,14 @@ var keyboard = {
     ]
 }
 
-document.onmousemove = function (event){
+var canvas = document.getElementById("canvas");
+
+canvas.onmousemove = function (event){
     mouse.x = event.offsetX;
     mouse.y = event.offsetY;
 }
 
-document.onmousedown = function (event){
+canvas.onmousedown = function (event){
     switch (event.button) {
         case 0:
             mouse.left = true
@@ -39,7 +41,7 @@ document.onmousedown = function (event){
     }
 }
 
-document.onmouseup = function (event){
+canvas.onmouseup = function (event){
     switch (event.button) {
         case 0:
             mouse.left = false
@@ -50,14 +52,14 @@ document.onmouseup = function (event){
     }
 }
 
-document.onkeydown = function (event){
+canvas.onkeydown = function (event){
     //Number Keys
     if(event.which.between(48,57)){
         keyboard.numberKeys[event.which-48] = true;
     }
 }
 
-document.onkeyup = function (event){
+canvas.onkeyup = function (event){
     //Number Keys
     if(event.which.between(48,57)){
         keyboard.numberKeys[event.which-48] = false;

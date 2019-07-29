@@ -98,7 +98,7 @@ function render(ctx){
         });
     });
 
-    //Hotbar
+    /*//Hotbar
     ctx.drawImage(images.hotbar,
         Math.floor(window.innerWidth/2)-114,window.innerHeight-32
     );
@@ -135,7 +135,7 @@ function render(ctx){
         //Sprite Position & Size
         32,userinfo.button === 2 ?16:0,16,16,
         //Position & Size
-        Math.floor(window.innerWidth/2)-78,window.innerHeight-48,16,16);
+        Math.floor(window.innerWidth/2)-78,window.innerHeight-48,16,16);*/
 }
 
 function drawChunk(ctx, num, positionx, positiony){
