@@ -79,10 +79,28 @@ function render(ctx){
     //Draw Chunks
     blockPositions = [];
 
-    drawChunk(ctx,0,0,0);
-    drawChunk(ctx,1,1,0);
-    drawChunk(ctx,2,0,1);
-    drawChunk(ctx,3,1,1);
+    //For each X axis in the Map Matrix
+    //Element: Y Axis
+    //Index: X Position
+    map.chunkMatrix.forEach(function(ex,ix){
+        //Element: Chunk ID
+        //Index: Y Position
+        ex.forEach(function(ey,iy){
+            //If the chunk is in frame, draw the chunk.
+            if(
+                //X Position
+                (camera[0]+(iy*96)-(ix*96)).between(-96,window.innerWidth+96)&&
+                //Y Position
+                (camera[1]+(iy*48)+(ix*48)).between(-96,window.innerHeight+108)
+            ){
+                drawChunk(ctx,ey,ix,iy);
+            }
+        });
+    });
+    /*drawChunk(ctx,0,0,0);
+    drawChunk(ctx,1,0,1);
+    drawChunk(ctx,2,1,0);
+    drawChunk(ctx,3,1,1);*/
 
     //Hotbar
     ctx.drawImage(images.hotbar,
@@ -142,9 +160,9 @@ function drawChunk(ctx, num, positionx, positiony){
                 //If block is not air
                 if(ey!==0){
                     //X Position
-                    var x = camera[0]-12+(iy*12)-(ix*12)+(positionx*96)-(positiony*96);
+                    var x = camera[0]-12+(iy*12)-(ix*12)+(positiony*96)-(positionx*96);
                     //Y Position
-                    var y = camera[1]-12+(iy*6)+(ix*6)-(il*12)+(positionx*48)+(positiony*48);
+                    var y = camera[1]-12+(iy*6)+(ix*6)-(il*12)+(positiony*48)+(positionx*48);
                     //Draw a Block
                     ctx.drawImage(images.blocksheet,
                         //Sprite Position & Size
