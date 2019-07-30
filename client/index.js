@@ -36,8 +36,6 @@ function init(){
         //Define Images
         newImage("blocksheet","blocksheet.png"); //Block Tileset
         newImage("selection", "selection.png"); //Selection Overlay
-        newImage("buttons", "buttons.png"); //Action Buttons
-        newImage("hotbar", "hotbar.png"); //Block Hotbar
 
         //Render each frame.
         setInterval(function(){
