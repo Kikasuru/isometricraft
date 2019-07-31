@@ -11,6 +11,7 @@ var map = {
         [0,1],
         [2,3]
     ],
+    "spawn":[1,1],
     "chunk0":{
         "layers":[
             [
@@ -68,6 +69,8 @@ var map = {
         ]
     }
 }
+
+var camera = [Math.floor(window.innerWidth/2)-(map.spawn[0]*196)+98,Math.floor(window.innerHeight/2)-(map.spawn[0]*108)+48];
 
 var chunkCanvases = {};
 

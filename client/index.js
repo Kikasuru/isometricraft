@@ -7,8 +7,6 @@ var userinfo = {
     reverse:false
 };
 
-var camera = [Math.floor(window.innerWidth/2),Math.floor(window.innerHeight/2)];
-
 //init - Starts the Main Loop (Passive)
 function init(){
     //Get Canvas
