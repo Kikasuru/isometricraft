@@ -69,6 +69,8 @@ var map = {
     }
 }
 
+var chunkCanvases = {};
+
 var blockPositions = [];
 
 //render - Renders the game (Active)
@@ -93,7 +95,11 @@ function render(ctx){
                 //Y Position
                 (camera[1]+(iy*48)+(ix*48)).between(-96,window.innerHeight+108)
             ){
-                drawChunk(ctx,ey,ix,iy);
+                ctx.drawImage(chunkCanvases["chunk"+ey],
+                //X Position
+                camera[0]+(iy*96)-(ix*96),
+                //Y Position
+                camera[1]+(iy*48)+(ix*48)-(chunkCanvases["chunk"+ey].height-108))
             }
         });
     });
@@ -138,8 +144,18 @@ function render(ctx){
         Math.floor(window.innerWidth/2)-78,window.innerHeight-48,16,16);*/
 }
 
-function drawChunk(ctx, num, positionx, positiony){
-    var chunkPositions = [];
+function drawChunk(num){
+    //Get a layer count.
+    var layerCount = map["chunk"+num].layers.length
+    //Create a new canvas for the chunk.
+    var chunkCanvas = document.createElement("canvas")
+    chunkCanvas.height = 108+((layerCount-1)*12);
+    chunkCanvas.width = 196;
+    document.getElementById("chunks").appendChild(chunkCanvas);
+    chunkCanvases["chunk"+num] = chunkCanvas;
+
+    var ctx = chunkCanvas.getContext("2d");
+
     //Draw each Layer
     //Element: Layer
     //Index: Layer Position
@@ -151,14 +167,13 @@ function drawChunk(ctx, num, positionx, positiony){
             //For each Y Axis
             //Element: Block Number
             //Index: Y Position
-            var layerPositions = [];
             ex.forEach(function(ey,iy){
                 //If block is not air
                 if(ey!==0){
                     //X Position
-                    var x = camera[0]-12+(iy*12)-(ix*12)+(positiony*96)-(positionx*96);
+                    var x = 86+(iy*12)-(ix*12);
                     //Y Position
-                    var y = camera[1]-12+(iy*6)+(ix*6)-(il*12)+(positiony*48)+(positionx*48);
+                    var y = (iy*6)+(ix*6)-(il*12)+((layerCount-1)*12);
                     //Draw a Block
                     ctx.drawImage(images.blocksheet,
                         //Sprite Position & Size

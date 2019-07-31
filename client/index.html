@@ -18,8 +18,25 @@
         }
     </style>
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script>
+        //Preload Images
+        var images = {};
+        //newImage - Loads a new image into the queue (Call)
+        function newImage(name,src){
+            //Define new Image
+            var ni = new Image();
+            //Set the Source
+            ni.src = "assets/"+src;
+            //Add to the Object
+            images[name] = ni;
+        }
+
+        newImage("blocksheet","blocksheet.png"); //Block Tileset
+        newImage("selection", "selection.png"); //Selection Overlay
+    </script>
 </head>
 <body onload="init()" onresize="resize()">
+    <div style="display:none;" id="chunks"></div>
     <script src="index.js"></script>
     <canvas id="canvas"></canvas>
     <!--

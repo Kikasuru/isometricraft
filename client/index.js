@@ -7,7 +7,6 @@ var userinfo = {
     reverse:false
 };
 
-var images = {};
 var camera = [Math.floor(window.innerWidth/2),Math.floor(window.innerHeight/2)];
 
 //init - Starts the Main Loop (Passive)
@@ -33,29 +32,26 @@ function init(){
         //Get Context
         var ctx = canvas.getContext("2d");
 
-        //Define Images
-        newImage("blocksheet","blocksheet.png"); //Block Tileset
-        newImage("selection", "selection.png"); //Selection Overlay
-
         //Render each frame.
         setInterval(function(){
             tic();
             render(ctx);
         },16);
+
+        //Render Chunks
+        //Element: Y Axis
+        map.chunkMatrix.forEach(function(ex){
+            //Element: Chunk ID
+            ex.forEach(function(ey){
+                console.log(ey)
+                //Draw the chunk.
+                drawChunk(ey);
+            });
+        });
     } else {
         //Tell the user that their browser is not Canvas compatible.
         document.body.innerHTML = "Sorry, your browser does not support Canvas."; //get beaned dummy
     }
-}
-
-//newImage - Loads a new image into the queue (Call)
-function newImage(name,src){
-    //Define new Image
-    var ni = new Image();
-    //Set the Source
-    ni.src = "assets/"+src;
-    //Add to the Object
-    images[name] = ni;
 }
 
 //resize - Updates the Window Size (Call)
