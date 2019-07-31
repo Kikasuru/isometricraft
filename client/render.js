@@ -94,9 +94,9 @@ function render(ctx){
             //If the chunk is in frame, draw the chunk.
             if(
                 //X Position
-                (camera[0]+(iy*96)-(ix*96)).between(-96,window.innerWidth+96)&&
+                (camera[0]+(iy*96)-(ix*96)).between(-192,window.innerWidth+192)&&
                 //Y Position
-                (camera[1]+(iy*48)+(ix*48)).between(-96,window.innerHeight+108)
+                (camera[1]+(iy*48)+(ix*48)).between(-108,window.innerHeight+108)
             ){
                 ctx.drawImage(chunkCanvases["chunk"+ey],
                 //X Position
