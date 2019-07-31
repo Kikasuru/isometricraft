@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <head>
     <title>SocketCraft</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://kit.fontawesome.com/0a763d9bc6.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: black;
             color: white;
-            padding:0;
-            margin:0;
+            padding: 0;
+            margin: 0;
             overflow: hidden;
+            font-family: 'Muli', sans-serif;
+            user-select: none;
         }
         canvas {
         	image-rendering: optimizeSpeed;
@@ -16,8 +21,55 @@
         	image-rendering: optimize-contrast;
         	-ms-interpolation-mode: nearest-neighbor;
         }
+
+        /*Buttons*/
+        #settings {
+            color: white;
+            position: fixed;
+            right: 8px;
+            top: 8px;
+            font-size: 24px;
+            transition: color 0.2s;
+        }
+        #settings:hover {
+            color: lightGray;
+            transition: color 0.2s;
+        }
+
+        #hotbar {
+            background-color: white;
+            border-radius: 16px 16px 0 0;
+            padding: 8px;
+            padding-bottom: 4px;
+            position: fixed;
+            bottom:0;
+            left:calc(50% - 142px);
+        }
+        #hotbar span{
+            display: inline-block;
+            height: 28px;
+            width: 28px;
+            background-color: lightGray;
+            border-radius: 4px;
+        }
+
+        #hotbarButtons {
+            position: fixed;
+            bottom:40px;
+            left:calc(50% - 128px);
+        }
+        #hotbarButtons i {
+            display: inline-block;
+            background-color: white;
+            height: 20px;
+            width: 18px;
+            border-radius: 4px 4px 0 0;
+            font-size:14px;
+            color:black;
+            text-align: center;
+            padding-top: 2px;
+        }
     </style>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
     <script>
         //Preload Images
         var images = {};
@@ -36,13 +88,39 @@
     </script>
 </head>
 <body onload="init()" onresize="resize()">
+    <!--Chunk Canvases-->
     <div style="display:none;" id="chunks"></div>
+
+    <!--Buttons-->
+    <i class="fas fa-cog" id="settings"></i>
+    <div id="hotbar">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div id="hotbarButtons">
+        <i class="fas fa-hammer"></i>
+        <i class="fas fa-hand-paper"></i>
+        <i class="fas fa-toolbox"></i>
+    </div>
+
+    <!--Main Script and Canvas-->
     <script src="index.js"></script>
     <canvas id="canvas"></canvas>
-    <!--
-        Extra Scripts go here!
-    -->
+
+    <!--Extra Scripts-->
     <script src="gametic.js"></script>
     <script src="render.js"></script>
     <script src="controller.js"></script>
+
+    <!--Info-->
+    <span style="position: fixed;right:8px;bottom: 8px;font-size:10px;text-align:right;">SocketCraft v1.0 Created by Kikasuru<br/>
+        <a href="https://github.com/Kikasuru/socketcraft" style="color:white;">Github</a> | Discord | Twitter
+    </span>
 </body>
