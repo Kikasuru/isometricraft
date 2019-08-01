@@ -46,13 +46,19 @@
             left:32px;
             spacing: 4px;
         }
-        #hotbar span{
+        #hotbar span {
             display: inline-block;
             height: 24px;
             width: 24px;
             background-color: lightGray;
             border-radius: 4px;
             border: solid 2px lightGray;
+            transition: border 0.2s;
+        }
+
+        #hotbar span .clicked{
+            border: solid 2px #249FDE;
+            transition: border 0.2s;
         }
 
         #hotbarButtons {
@@ -63,20 +69,19 @@
         #hotbarButtons i {
             display: inline-block;
             background-color: white;
-            height: 18px;
-            width: 18px;
+            height: 20px;
+            width: 24px;
             border-radius: 4px 4px 0 0;
-            font-size:14px;
+            font-size:16px;
             color:black;
             text-align: center;
             padding-top: 4px;
-            transition: background-color 0.2s, padding-top 0.2s;
+            padding-bottom: 4px;
+            transition: padding-top 0.2s;
         }
         #hotbarButtons .clicked {
-            display: inline-block;
-            padding-top: 2px;
-            background-color: lightGray;
-            transition: background-color 0.2s, padding-top 0.2s;
+            border-top: solid 4px #249FDE;
+            transition: border-top 0.2s;
         }
     </style>
     <script>
@@ -105,10 +110,10 @@
     <div id="hotbarButtons">
         <i class="fas fa-hammer" onclick="breakMode()" id="breakMode"></i>
         <i class="fas fa-hand-paper clicked" onclick="panMode()" id="panMode"></i>
-        <i class="fas fa-toolbox" style="margin-left:432px;" id="inventory"></i>
+        <i class="fas fa-toolbox" style="margin-left:416px;" id="inventory"></i>
     </div>
     <div id="hotbar">
-        <span></span>
+        <span class="clicked"></span>
         <span></span>
         <span></span>
         <span></span>
