@@ -58,3 +58,48 @@ canvas.onkeyup = function (event){
         keyboard.numberKeys[event.which-48] = false;
     }
 }
+
+//Buttons
+function breakMode(){
+    //Set the mode to Break Mode.
+    userinfo.button = 0;
+    //Set the button to be clicked.
+    document.getElementById("breakMode").classList.add("clicked");
+
+    //Remove the clicked class from any other button.
+    document.getElementById("panMode").classList.remove("clicked");
+}
+
+function panMode(){
+    //Set the mode to Pan Mode.
+    userinfo.button = 2;
+    //Set the button to be clicked.
+    document.getElementById("panMode").classList.add("clicked");
+
+    //Remove the clicked class from any other button.
+    document.getElementById("breakMode").classList.remove("clicked");
+}
+
+//Hotbar Blocks
+
+//Create each button.
+for(i=0;i<16;i++){
+    //Get the span
+    var span = document.getElementById("hotbar").childNodes[i*2+1]
+    //Set the style of the span so it loads from the sheet.
+    span.style = `
+        background: lightGray url(assets/blocksheet.png) -`+(userinfo.hotbar[i]*24)+`px 0;
+    `
+    //Set the onclick property
+    span.onclick = function(){
+        //Set the mode to Build Mode.
+        userinfo.button = 1;
+
+        //Switch to that block.
+        userinfo.hotbarSelection = i;
+
+        //Remove the clicked class from any other button.
+        document.getElementById("breakMode").classList.remove("clicked");
+        document.getElementById("panMode").classList.remove("clicked");
+    }
+}

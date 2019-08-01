@@ -1,9 +1,9 @@
 var userinfo = {
     hovering:false,
     position:"top",
-    hotbar:[1,2,3,4,5,6,7,8],
+    hotbar:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
     hotbarSelection:0,
-    button:0,
+    button:1,
     reverse:false
 };
 
@@ -41,7 +41,6 @@ function init(){
         map.chunkMatrix.forEach(function(ex){
             //Element: Chunk ID
             ex.forEach(function(ey){
-                console.log(ey)
                 //Draw the chunk.
                 drawChunk(ey);
             });

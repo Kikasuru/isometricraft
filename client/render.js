@@ -81,8 +81,6 @@ function render(ctx){
     //Make a Black background
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
-    //Draw Chunks
-    blockPositions = [];
 
     //For each X axis in the Map Matrix
     //Element: Y Axis
@@ -107,6 +105,8 @@ function render(ctx){
         });
     });
 
+
+
     /*//Hotbar
     ctx.drawImage(images.hotbar,
         Math.floor(window.innerWidth/2)-114,window.innerHeight-32
@@ -123,28 +123,7 @@ function render(ctx){
         userinfo.button === 1){
             ctx.drawImage(images.selection,Math.floor(window.innerWidth/2)-110+(i*28),window.innerHeight-28,24,24);
         }
-    });
-    //Buttons
-    //Break Button
-    ctx.drawImage(images.buttons,
-        //Sprite Position & Size
-        0,userinfo.button === 0 ?16:0,16,16,
-        //Position & Size
-        Math.floor(window.innerWidth/2)-110,window.innerHeight-48,16,16);
-
-    //Build Button
-    ctx.drawImage(images.buttons,
-        //Sprite Position & Size
-        16,userinfo.button === 1 ?16:0,16,16,
-        //Position & Size
-        Math.floor(window.innerWidth/2)-94,window.innerHeight-48,16,16);
-
-    //Hand Button
-    ctx.drawImage(images.buttons,
-        //Sprite Position & Size
-        32,userinfo.button === 2 ?16:0,16,16,
-        //Position & Size
-        Math.floor(window.innerWidth/2)-78,window.innerHeight-48,16,16);*/
+    });*/
 }
 
 function drawChunk(num){

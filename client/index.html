@@ -43,31 +43,40 @@
             padding-bottom: 4px;
             position: fixed;
             bottom:0;
-            left:calc(50% - 142px);
+            left:32px;
+            spacing: 4px;
         }
         #hotbar span{
             display: inline-block;
-            height: 28px;
-            width: 28px;
+            height: 24px;
+            width: 24px;
             background-color: lightGray;
             border-radius: 4px;
+            border: solid 2px lightGray;
         }
 
         #hotbarButtons {
             position: fixed;
-            bottom:40px;
-            left:calc(50% - 128px);
+            bottom:42px;
+            left:48px;
         }
         #hotbarButtons i {
             display: inline-block;
             background-color: white;
-            height: 20px;
+            height: 18px;
             width: 18px;
             border-radius: 4px 4px 0 0;
             font-size:14px;
             color:black;
             text-align: center;
+            padding-top: 4px;
+            transition: background-color 0.2s, padding-top 0.2s;
+        }
+        #hotbarButtons .clicked {
+            display: inline-block;
             padding-top: 2px;
+            background-color: lightGray;
+            transition: background-color 0.2s, padding-top 0.2s;
         }
     </style>
     <script>
@@ -93,6 +102,11 @@
 
     <!--Buttons-->
     <i class="fas fa-cog" id="settings"></i>
+    <div id="hotbarButtons">
+        <i class="fas fa-hammer" onclick="breakMode()" id="breakMode"></i>
+        <i class="fas fa-hand-paper" onclick="panMode()" id="panMode"></i>
+        <i class="fas fa-toolbox" style="margin-left:432px;" id="inventory"></i>
+    </div>
     <div id="hotbar">
         <span></span>
         <span></span>
@@ -103,11 +117,13 @@
         <span></span>
         <span></span>
         <span></span>
-    </div>
-    <div id="hotbarButtons">
-        <i class="fas fa-hammer"></i>
-        <i class="fas fa-hand-paper"></i>
-        <i class="fas fa-toolbox"></i>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
     <!--Main Script and Canvas-->
@@ -121,6 +137,6 @@
 
     <!--Info-->
     <span style="position: fixed;right:8px;bottom: 8px;font-size:10px;text-align:right;">SocketCraft v1.0 Created by Kikasuru<br/>
-        <a href="https://github.com/Kikasuru/socketcraft" style="color:white;">Github</a> | Discord | Twitter
+        <a href="https://github.com/Kikasuru/socketcraft" target="_blank" style="color:white;">Github</a> | Discord | Twitter
     </span>
 </body>

@@ -63,8 +63,8 @@ function tic(){
     //console.log(mouseCamera,camera);
 
     //---Camera---
-    //Checks if the right button is pressed or if the current mode is Hand Mode.
-    if(mouse.left === true || (userinfo.button === 2 && mouse.left === true)){
+    //Checks if the current mode is Hand Mode.
+    if(userinfo.button === 2 && mouse.left === true){
         //If it wasn't already moving, initialize the move.
         if(mouseCamera.moving === false){
             mouseCamera.moving = true;
