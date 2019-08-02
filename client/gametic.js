@@ -132,7 +132,8 @@ function tic(){
                 mouseLeftPressed = true;
                 //Check if a block is being hovered.
                 if(userinfo.hovering !== false){
-                    var block = blockPositions[userinfo.hovering];
+                    var chunk = chunkInfo["chunk"+userinfo.hoveringChunk];
+                    var block = chunk.info[userinfo.hovering];
                     //console.log(block);
                     switch(userinfo.position){
                         case "top":
@@ -167,6 +168,8 @@ function tic(){
                             }
                             break;
                     }
+                    //Update the chunk.
+                    drawChunk(block.blockInfo.chunk);
                 }
             }
         }
@@ -176,11 +179,14 @@ function tic(){
                 mouseLeftPressed = true;
                 //Check if a block is being hovered.
                 if(userinfo.hovering !== false){
-                    var block = blockPositions[userinfo.hovering];
+                    var chunk = chunkInfo["chunk"+userinfo.hoveringChunk];
+                    var block = chunk.info[userinfo.hovering];
                     //Check if the layer is not the baseplate.
                     if(block.blockInfo.layer !== 0){
                         map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x][block.blockInfo.y] = 0;
                     }
+                    //Update the chunk.
+                    drawChunk(block.blockInfo.chunk);
                 }
             }
         }

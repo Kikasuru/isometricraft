@@ -102,13 +102,15 @@ for(i=0;i<16;i++){
     span.style = `
         background: lightGray url(assets/blocksheet.png) -`+(userinfo.hotbar[i]*24)+`px 0;
     `
+    //Set the block number.
+    span.setAttribute("data-block",i);
     //Set the onclick property
     span.onclick = function(event){
         //Set the mode to Build Mode.
         userinfo.button = 1;
 
         //Switch to that block.
-        userinfo.hotbarSelection = i;
+        userinfo.hotbarSelection = event.target.getAttribute("data-block");
 
         //Remove the clicked class from any other button.
         document.getElementById("breakMode").classList.remove("clicked");
