@@ -68,6 +68,12 @@ function breakMode(){
 
     //Remove the clicked class from any other button.
     document.getElementById("panMode").classList.remove("clicked");
+    for(i=0;i<16;i++){
+        //Get each icon.
+        var span = document.getElementById("hotbar").childNodes[i*2+1];
+        //Remove the Clicked class
+        span.classList.remove("clicked");
+    }
 }
 
 function panMode(){
@@ -78,6 +84,12 @@ function panMode(){
 
     //Remove the clicked class from any other button.
     document.getElementById("breakMode").classList.remove("clicked");
+    for(i=0;i<16;i++){
+        //Get each icon.
+        var span = document.getElementById("hotbar").childNodes[i*2+1];
+        //Remove the Clicked class
+        span.classList.remove("clicked");
+    }
 }
 
 //Hotbar Blocks
@@ -85,13 +97,13 @@ function panMode(){
 //Create each button.
 for(i=0;i<16;i++){
     //Get the span
-    var span = document.getElementById("hotbar").childNodes[i*2+1]
+    var span = document.getElementById("hotbar").childNodes[i*2+1];
     //Set the style of the span so it loads from the sheet.
     span.style = `
         background: lightGray url(assets/blocksheet.png) -`+(userinfo.hotbar[i]*24)+`px 0;
     `
     //Set the onclick property
-    span.onclick = function(){
+    span.onclick = function(event){
         //Set the mode to Build Mode.
         userinfo.button = 1;
 
@@ -101,5 +113,14 @@ for(i=0;i<16;i++){
         //Remove the clicked class from any other button.
         document.getElementById("breakMode").classList.remove("clicked");
         document.getElementById("panMode").classList.remove("clicked");
+        for(i=0;i<16;i++){
+            //Get each icon.
+            var span = document.getElementById("hotbar").childNodes[i*2+1];
+            //Remove the Clicked class
+            span.classList.remove("clicked");
+        }
+
+        //Set the class to clicked.
+        event.target.classList.add("clicked");
     }
 }
