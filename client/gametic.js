@@ -87,17 +87,35 @@ function tic(){
 
     //---Block Selection---
     //Find what block the user is hovering
-    userinfo.hovering = false
-    for(i=0;i<blockPositions.length;i++){
-        //
-        var hovering = hit(blockPositions[i].x,blockPositions[i].y,mouse.x,mouse.y)
-        //If hovering is true, log it.
-        if(hovering){
-            userinfo.position = hovering;
-            userinfo.hovering = i;
-            //break;
-        }
-    }
+
+    //Set these for fallback.
+    userinfo.hovering = false;
+    userinfo.hoveringChunk = false;
+
+    //For Each Chunk
+    //Element: Chunk Number
+    visibleChunks.forEach(function(ce){
+        //For Each Block.
+        //Element: Block Info
+        //Index: Block Number
+        chunkInfo["chunk"+ce].info.forEach(function(be,bi){
+            //Check if the block hit.
+            var hovering = hit(
+                //X Position
+                chunkInfo["chunk"+ce].position[0]+be.x,
+                //Y Position
+                chunkInfo["chunk"+ce].position[1]+be.y,
+                //Mouse Position
+                mouse.x,mouse.y)
+            //If hovering is true, log it.
+            if(hovering){
+                userinfo.position = hovering;
+                userinfo.hovering = bi;
+                userinfo.hoveringChunk = ce;
+                //break;
+            }
+        });
+    });
 
     //Check if the mouse is clicked.
     if(mouse.left === true){

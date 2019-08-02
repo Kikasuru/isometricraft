@@ -72,15 +72,19 @@ var map = {
 
 var camera = [Math.floor(window.innerWidth/2)-(map.spawn[0]*196)+98,Math.floor(window.innerHeight/2)-(map.spawn[0]*108)+48];
 
-var chunkCanvases = {};
+var chunkInfo = {};
+var visibleChunks = [];
 
-var blockPositions = [];
+var sideNames = ["full", "top", "right", "left"];
 
 //render - Renders the game (Active)
 function render(ctx){
     //Make a Black background
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+
+    //Initialize the visible chunks.
+    visibleChunks = [];
 
     //For each X axis in the Map Matrix
     //Element: Y Axis
@@ -96,34 +100,39 @@ function render(ctx){
                 //Y Position
                 (camera[1]+(iy*48)+(ix*48)).between(-108,window.innerHeight+108)
             ){
-                ctx.drawImage(chunkCanvases["chunk"+ey],
                 //X Position
-                camera[0]+(iy*96)-(ix*96),
+                var x = camera[0]+(iy*96)-(ix*96);
                 //Y Position
-                camera[1]+(iy*48)+(ix*48)-(chunkCanvases["chunk"+ey].height-108))
+                var y = camera[1]+(iy*48)+(ix*48)-(chunkInfo["chunk"+ey].canvas.height-108);
+
+                //Draw the chunk.
+                ctx.drawImage(chunkInfo["chunk"+ey].canvas,x,y);
+
+                //Log the chunk as a visible chunk.
+                visibleChunks.push(ey);
+
+                //Log the chunk positions.
+                chunkInfo["chunk"+ey].position = [x,y]
             }
         });
     });
 
+    //Get the hovered Chunk and Block.
+    if(userinfo.hovering){
+        var selChunk = chunkInfo["chunk"+userinfo.hoveringChunk];
+        var selBlock = selChunk.info[userinfo.hovering];
 
-
-    /*//Hotbar
-    ctx.drawImage(images.hotbar,
-        Math.floor(window.innerWidth/2)-114,window.innerHeight-32
-    );
-    //Hotbar Blocks
-    userinfo.hotbar.forEach(function(e,i){
-        ctx.drawImage(images.blocksheet,
-            //Sprite Position & Size
-            24*(e),0,24,24,
-            //Position & Size
-            Math.floor(window.innerWidth/2)-110+(i*28),window.innerHeight-28,24,24);
-        if(userinfo.hotbarSelection === i&&
-        //Check if Build Mode is on.
-        userinfo.button === 1){
-            ctx.drawImage(images.selection,Math.floor(window.innerWidth/2)-110+(i*28),window.innerHeight-28,24,24);
-        }
-    });*/
+    //Draw the selection.
+    ctx.drawImage(images.selection,
+        //Sprite Position & Size
+        24*(sideNames.indexOf(userinfo.position)),0,24,24,
+        //Position & Size
+        //X Position
+        selChunk.position[0]+selBlock.x,
+        //Y Position
+        selChunk.position[1]+selBlock.y,
+        24,24);
+    }
 }
 
 function drawChunk(num){
@@ -134,7 +143,7 @@ function drawChunk(num){
     chunkCanvas.height = 108+((layerCount-1)*12);
     chunkCanvas.width = 196;
     document.getElementById("chunks").appendChild(chunkCanvas);
-    chunkCanvases["chunk"+num] = chunkCanvas;
+    chunkInfo["chunk"+num] = {canvas:chunkCanvas,info:[]};
 
     var ctx = chunkCanvas.getContext("2d");
 
@@ -162,12 +171,12 @@ function drawChunk(num){
                         24*(ey),0,24,24,
                         //Position & Size
                         x,y,24,24);
-                    //Check if Mouse is hovering the block and if Hand Mode is off.
+                    /*//Check if Mouse is hovering the block and if Hand Mode is off.
                     if(userinfo.hovering === blockPositions.length && userinfo.button !== 2){
                         ctx.drawImage(images.selection,x,y,24,24);
-                    }
+                    }*/
                     //Put the block position in a variable for the Gametic to read.
-                    blockPositions.push({x,y,blockInfo:{
+                    chunkInfo["chunk"+num].info.push({x,y,blockInfo:{
                         type:ey,
                         chunk:num,
                         x:ix,
