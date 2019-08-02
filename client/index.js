@@ -17,12 +17,6 @@ function init(){
         //Resize the Canvas
         resize();
 
-        //Enable Nearest Neighbor
-        canvas.imageSmoothingEnabled = false;
-        canvas.mozImageSmoothingEnabled = false;
-        canvas.webkitImageSmoothingEnabled = false;
-        canvas.msImageSmoothingEnabled = false;
-
         //Disable Rightclicks
         canvas.oncontextmenu = function(e) {
             return false;
