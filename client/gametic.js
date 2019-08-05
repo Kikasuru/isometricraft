@@ -12,28 +12,27 @@ var mouseCamera = {
 //hitboxes - Block Hitboxes
 var hitboxes = {
     "top":[
-        //Middle
-        [[6,2],[19,11]],
-        //Left
-        [[2,4],[7,9]],
-        //Right
-        [[18,4],[23,9]]
+        [[0,2],[24,5]],
+        [[2,4],[22,7]],
+        [[4,3],[20,8]],
+        [[6,2],[18,8]],
+        [[8,1],[16,10]]
     ],
     "right":[
-        //Middle
-        [[14,11],[23,21]],
-        //Left
-        [[12,12],[17,24]],
-        //Right
-        [[20,8],[25,20]]
+        [[12,12],[14,24]],
+        [[14,11],[16,23]],
+        [[16,10],[18,22]],
+        [[18,9],[20,21]],
+        [[20,8],[22,20]],
+        [[22,7],[24,19]]
     ],
     "left":[
-        //Middle
-        [[2,11],[11,21]],
-        //Left
-        [[0,8],[5,20]],
-        //Right
-        [[8,12],[13,24]]
+        [[0,7],[2,19]],
+        [[2,8],[4,20]], //lol
+        [[4,9],[6,21]],
+        [[6,10],[8,22]],
+        [[8,11],[10,23]],
+        [[10,12],[12,24]]
     ]
 }
 
@@ -45,9 +44,9 @@ function hit (blockx,blocky,hitx,hity){
         hitboxes[eo].forEach(function(e,i){
             //If Mouse is inbetween Block Position+Hitbox Offset
             //X Position
-            if(hitx.between(blockx+e[0][0],blockx+e[1][0])&&
+            if(hitx.between(blockx+e[0][0],blockx+e[1][0]+2)&&
             //Y Position
-            hity.between(blocky+e[0][1],blocky+e[1][1])){
+            hity.between(blocky+e[0][1],blocky+e[1][1]+2)){
                 //Set Output to true
                 output = eo;
             };
