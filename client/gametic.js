@@ -187,7 +187,7 @@ function tic(){
                             if(block.blockInfo.x+1 !== 8 && map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x+1][block.blockInfo.y] === 0){
                                 //Place the block.
                                 map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x+1][block.blockInfo.y] = userinfo.hotbar[userinfo.hotbarSelection]
-                            } else if(block.blockInfo.y+1 === 8) { //If the block to the left is at the edge of the chunk.
+                            } else if(block.blockInfo.x+1 === 8) { //If the block to the left is at the edge of the chunk.
                                 var newchunk = map.chunkMatrix[chunkInfo["chunk"+block.blockInfo.chunk].matrix[0]+1][chunkInfo["chunk"+block.blockInfo.chunk].matrix[1]]
                                 //Check if there's a chunk to the left of the current chunk.
                                 if(newchunk){
