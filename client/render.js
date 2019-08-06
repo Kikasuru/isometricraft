@@ -98,7 +98,7 @@ function render(ctx){
                 //X Position
                 (camera[0]+(iy*96)-(ix*96)).between(-192,window.innerWidth+192)&&
                 //Y Position
-                (camera[1]+(iy*48)+(ix*48)).between(-108,window.innerHeight+108)
+                (camera[1]+(iy*48)+(ix*48)).between(chunkInfo["chunk"+ey].canvas.height*-1,window.innerHeight+chunkInfo["chunk"+ey].canvas.height)
             ){
                 //X Position
                 var x = camera[0]+(iy*96)-(ix*96);
