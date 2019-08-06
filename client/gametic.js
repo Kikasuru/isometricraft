@@ -157,6 +157,29 @@ function tic(){
                             if(block.blockInfo.y+1 !== 8 && map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x][block.blockInfo.y+1] === 0){
                                 //Place the block.
                                 map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x][block.blockInfo.y+1] = userinfo.hotbar[userinfo.hotbarSelection]
+                            } else if(block.blockInfo.y+1 === 8) { //If the block to the right is at the edge of the chunk.
+                                var newchunk = map.chunkMatrix[chunkInfo["chunk"+block.blockInfo.chunk].matrix[0]][chunkInfo["chunk"+block.blockInfo.chunk].matrix[1]+1]
+                                //Check if there's a chunk to the left of the current chunk.
+                                if(newchunk){
+                                    //If there's no layer on said chunk, create one.
+                                    if(typeof map["chunk"+newchunk].layers[block.blockInfo.layer] === "undefined"){
+                                        map["chunk"+newchunk].layers.push([
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0]
+                                        ]);
+                                    }
+                                    //Place a block.
+                                    map["chunk"+newchunk].layers[block.blockInfo.layer][block.blockInfo.x][0] = userinfo.hotbar[userinfo.hotbarSelection]
+
+                                    //Draw the new chunk.
+                                    drawChunk(newchunk);
+                                }
                             }
                             break;
                         case "left":
@@ -164,6 +187,29 @@ function tic(){
                             if(block.blockInfo.x+1 !== 8 && map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x+1][block.blockInfo.y] === 0){
                                 //Place the block.
                                 map["chunk"+block.blockInfo.chunk].layers[block.blockInfo.layer][block.blockInfo.x+1][block.blockInfo.y] = userinfo.hotbar[userinfo.hotbarSelection]
+                            } else if(block.blockInfo.y+1 === 8) { //If the block to the left is at the edge of the chunk.
+                                var newchunk = map.chunkMatrix[chunkInfo["chunk"+block.blockInfo.chunk].matrix[0]+1][chunkInfo["chunk"+block.blockInfo.chunk].matrix[1]]
+                                //Check if there's a chunk to the left of the current chunk.
+                                if(newchunk){
+                                    //If there's no layer on said chunk, create one.
+                                    if(typeof map["chunk"+newchunk].layers[block.blockInfo.layer] === "undefined"){
+                                        map["chunk"+newchunk].layers.push([
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0],
+                                            [0,0,0,0,0,0,0,0]
+                                        ]);
+                                    }
+                                    //Place a block.
+                                    map["chunk"+newchunk].layers[block.blockInfo.layer][0][block.blockInfo.y] = userinfo.hotbar[userinfo.hotbarSelection]
+
+                                    //Draw the new chunk.
+                                    drawChunk(newchunk);
+                                }
                             }
                             break;
                     }
