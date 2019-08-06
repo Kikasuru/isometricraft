@@ -36,8 +36,8 @@ function init(){
         map.chunkMatrix.forEach(function(ex){
             //Element: Chunk ID
             ex.forEach(function(ey){
-                //Draw the chunk.
-                drawChunk(ey);
+                //If the chunk is not empty, draw the chunk.
+                if(ey !== false) drawChunk(ey);
             });
         });
     } else {

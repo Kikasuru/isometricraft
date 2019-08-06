@@ -9,7 +9,7 @@
 var map = {
     "chunkMatrix":[
         [0,1],
-        [2,3]
+        [2,false,3]
     ],
     "spawn":[1,1],
     "chunk0":{
@@ -94,7 +94,7 @@ function render(ctx){
         //Index: Y Position
         ex.forEach(function(ey,iy){
             //If the chunk is in frame, draw the chunk.
-            if(
+            if(ey !== false) if(
                 //X Position
                 (camera[0]+(iy*96)-(ix*96)).between(-192,window.innerWidth+192)&&
                 //Y Position
