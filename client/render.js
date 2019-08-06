@@ -113,6 +113,7 @@ function render(ctx){
 
                 //Log the chunk positions.
                 chunkInfo["chunk"+ey].position = [x,y]
+                chunkInfo["chunk"+ey].matrix = [ix,iy]
             }
         });
     });
