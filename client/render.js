@@ -119,7 +119,7 @@ function render(ctx){
     });
 
     //Get the hovered Chunk and Block.
-    if(userinfo.hovering){
+    if(userinfo.hovering !== false){
         var selChunk = chunkInfo["chunk"+userinfo.hoveringChunk];
         var selBlock = selChunk.info[userinfo.hovering];
 
