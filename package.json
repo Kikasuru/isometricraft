@@ -1,0 +1,23 @@
+{
+  "name": "socketcraft",
+  "version": "1.0.0",
+  "description": "A 2D Isometric Minecraft Clone for HTML5",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kikasuru/socketcraft.git"
+  },
+  "author": "Kikasuru",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Kikasuru/socketcraft/issues"
+  },
+  "homepage": "https://github.com/Kikasuru/socketcraft#readme",
+  "dependencies": {
+    "js-yaml": "^3.13.1",
+    "ws": "^7.1.2"
+  }
+}
