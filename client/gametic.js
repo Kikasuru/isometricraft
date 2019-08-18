@@ -1,3 +1,5 @@
+//GameTic.js - Handles Game Frames and Functions.
+
 //Mouse Camera Variable - Remembers the position of the mouse when rightclicked
 var mouseCamera = {
     moving:false,

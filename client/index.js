@@ -1,3 +1,5 @@
+//Index.js - Handles Initial Setup
+
 var userinfo = {
     hovering:false,
     hoveringChunk:false,

@@ -1,3 +1,5 @@
+//Render.js - Handles Canvas and other screen functions.
+
 //Map Layout
 /*
 -Chunk

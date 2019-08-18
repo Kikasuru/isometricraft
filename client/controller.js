@@ -1,3 +1,5 @@
+//Controller.js - Handles Mouse Inputs.
+
 //Define Inputs
 var mouse = {
     x:0,
