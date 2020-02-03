@@ -27,8 +27,8 @@ var keyboard = {
 var canvas = document.getElementById("canvas");
 
 canvas.onmousemove = function (event){
-    mouse.x = event.offsetX;
-    mouse.y = event.offsetY;
+    mouse.x = Math.floor(event.offsetX/zoom);
+    mouse.y = Math.floor(event.offsetY/zoom);
 }
 
 canvas.onmousedown = function (event){
@@ -59,6 +59,15 @@ canvas.onkeyup = function (event){
     if(event.which.between(48,57)){
         keyboard.numberKeys[event.which-48] = false;
     }
+}
+
+canvas.onwheel = function (event){
+    //Set zoom up or down depending on where the wheel is going.
+    if(event.deltaY === -100 && zoom !== 4) zoom++;
+    if(event.deltaY === 100 && zoom !== 1) zoom--;
+
+    //Resize the canvas.
+    resize();
 }
 
 //Buttons

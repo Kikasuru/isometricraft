@@ -11,7 +11,7 @@
 var map = {
     "chunkMatrix":[
         [0,1],
-        [2,false,3]
+        [2,3]
     ],
     "spawn":[1,1],
     "chunk0":{
@@ -79,11 +79,13 @@ var visibleChunks = [];
 
 var sideNames = ["full", "top", "right", "left"];
 
+var zoom = 1;
+
 //render - Renders the game (Active)
 function render(ctx){
     //Make a Black background
     ctx.fillStyle = "black";
-    ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+    ctx.fillRect(0,0,(window.innerWidth/zoom),(window.innerHeight/zoom));
 
     //Initialize the visible chunks.
     visibleChunks = [];
@@ -98,9 +100,9 @@ function render(ctx){
             //If the chunk is in frame, draw the chunk.
             if(ey !== false) if(
                 //X Position
-                (camera[0]+(iy*96)-(ix*96)).between(-192,window.innerWidth+192)&&
+                (camera[0]+(iy*96)-(ix*96)).between(-192,(window.innerWidth/zoom)+192)&&
                 //Y Position
-                (camera[1]+(iy*48)+(ix*48)).between(chunkInfo["chunk"+ey].canvas.height*-1,window.innerHeight+chunkInfo["chunk"+ey].canvas.height)
+                (camera[1]+(iy*48)+(ix*48)).between(chunkInfo["chunk"+ey].canvas.height*-1,(window.innerHeight/zoom)+chunkInfo["chunk"+ey].canvas.height)
             ){
                 //X Position
                 var x = camera[0]+(iy*96)-(ix*96);

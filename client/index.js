@@ -54,6 +54,6 @@ function resize(){
     var canvas = document.getElementById("canvas");
 
     //Set Canvas Size
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = (window.innerWidth/zoom);
+    canvas.height = (window.innerHeight/zoom);
 }
